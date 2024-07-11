@@ -24,8 +24,29 @@ public class Computer {
 		double power = powerSource.supplyPower();
 		System.out.println(power + " watts received from power source");
 	}
-	
-	
-	
+
+	public HardDrive getHardDrive() {
+		return hardDrive;
+	}
+
+	public void setHardDrive(HardDrive hardDrive) {
+		this.hardDrive = hardDrive;
+	}
+
+	public Memory getMemory() {
+		return memory;
+	}
+
+	public void setMemory(Memory memory) {
+		this.memory = memory;
+	}
+
+	public String getMODEL() {
+		return MODEL;
+	}
+
+	public Processor getPROCESSOR() {
+		return PROCESSOR;
+	}
 
 }
