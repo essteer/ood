@@ -42,6 +42,11 @@ public class Runner {
 		System.out.print(RotatingArrays.toString(rotatedArray3));
 		System.out.println();
 		
+		String[] commands1 = {"LEFT", "DOWN", "RIGHT", "DOWN", "LEFT", "DOWN", "UP"};
+		System.out.println(MoonRover.roverMove(4, commands1));
+		
+		String[] commands2 = {"RIGHT", "UP", "DOWN", "RIGHT", "RIGHT", "RIGHT", "RIGHT", "RIGHT"};
+		System.out.println(MoonRover.roverMove(5, commands2));
 		
 	}
 
