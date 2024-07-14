@@ -47,6 +47,22 @@ public class Runner {
 		
 		String[] commands2 = {"RIGHT", "UP", "DOWN", "RIGHT", "RIGHT", "RIGHT", "RIGHT", "RIGHT"};
 		System.out.println(MoonRover.roverMove(5, commands2));
+		System.out.println();
+		
+		System.out.println(ValidPostcode.validPostcode("A12BC"));
+		System.out.println(ValidPostcode.validPostcode("AB12 3CD"));
+		System.out.println(ValidPostcode.validPostcode("12AB 3CD"));
+		System.out.println();
+		
+		String validPassword = "qw43g4JFE@@32rf";
+		String shortPassword = "1sS!";
+		String twoTypePassword = "1231342342sdfsadfsdfas";
+		String threeTypePassword = "%fO3cm-£ooo";
+		
+		System.out.println(ValidPassword.validPassword(validPassword));
+		System.out.println(ValidPassword.validPassword(shortPassword));
+		System.out.println(ValidPassword.validPassword(twoTypePassword));
+		System.out.println(ValidPassword.validPassword(threeTypePassword));
 		
 	}
 
