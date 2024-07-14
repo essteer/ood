@@ -4,32 +4,43 @@ public class Runner {
 	
 	public static void main(String[] args) {
 		
-		PrimeNumbers primeNums = new PrimeNumbers();
-		System.out.println(primeNums.primeNumbers(50));
+		System.out.println(PrimeNumbers.primeNumbers(50));
+		System.out.println();
 		
-		BubbleSort bubbleSort = new BubbleSort();
 		int[] intArray = {3,2,1,5,4};
-		int[] sortedArray = bubbleSort.sortIntArray(intArray);
+		int[] sortedArray = BubbleSort.sortIntArray(intArray);
 		
 		for (int i : sortedArray) {
 			System.out.print(i + " ");
 		}
 		System.out.println();
+		System.out.println();
 		
-		SimpleEncoder simpleEncoder = new SimpleEncoder();
 		//e.g. Argument “abcd” would return encoded String “badc”
-		System.out.println(simpleEncoder.encode("abcd"));
+		System.out.println(SimpleEncoder.encode("abcd"));
 		//Argument “two words” would return “uvp xnsct”
-		System.out.println(simpleEncoder.encode("two words"));
+		System.out.println(SimpleEncoder.encode("two words"));
+		System.out.println();
 		
-		HarderEncoder harderEncoder = new HarderEncoder();
         // "abcd” will return “bzfz”
-		System.out.println(harderEncoder.encode("abcd"));
+		System.out.println(HarderEncoder.encode("abcd"));
 		//For example: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa (52 x ‘a’)
 		//will return: bydwfuhsjqlonmpkritgvexczabydwfuhsjqlonmpkritgvexcza
-		System.out.println(harderEncoder.encode("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"));
+		System.out.println(HarderEncoder.encode("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"));
+		System.out.println();
 		
+		int[] array = {1,2,3,4,5};
+		int[] rotatedArray1 = RotatingArrays.rotateArray(array, 1);
+		System.out.print(RotatingArrays.toString(rotatedArray1));
+		System.out.println();
 		
+		int[] rotatedArray2 = RotatingArrays.rotateArray(array, 6);
+		System.out.print(RotatingArrays.toString(rotatedArray2));
+		System.out.println();
+		
+		int[] rotatedArray3 = RotatingArrays.rotateArray(array, 3);
+		System.out.print(RotatingArrays.toString(rotatedArray3));
+		System.out.println();
 		
 		
 	}

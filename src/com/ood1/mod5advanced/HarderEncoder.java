@@ -2,7 +2,7 @@ package com.ood1.mod5advanced;
 
 public class HarderEncoder {
 	
-	public String encode(String target) {
+	public static String encode(String target) {
 
 		char[] targetArray = target.toCharArray();
 

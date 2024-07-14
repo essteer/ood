@@ -2,7 +2,7 @@ package com.ood1.mod5advanced;
 
 public class BubbleSort {
 
-	public int[] sortIntArray(int[] rawArray) {
+	public static int[] sortIntArray(int[] rawArray) {
 
 		int[] newArray = rawArray.clone();
 

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class PrimeNumbers {
 
-	public ArrayList<Integer> primeNumbers(int number) {
+	public static ArrayList<Integer> primeNumbers(int number) {
 
 		ArrayList<Integer> primes = new ArrayList<>();
 
