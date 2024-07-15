@@ -4,7 +4,7 @@ public class HarderEncoder {
 	
 	public static String encode(String target) {
 
-		char[] targetArray = target.toCharArray();
+		char[] targetArray = target.toLowerCase().toCharArray();
 
 		String alphabet = "abcdefghijklmnopqrstuvwxyz";
 		String encodedTarget = "";

@@ -30,7 +30,7 @@ public class MoonRover {
 			if (command.equals("UP") && x > 0) {
 				x -= 1;
 			}
-			else if (command.equals("DOWN") && x < size) {
+			else if (command.equals("DOWN") && x < size - 1) {
 				x += 1;
 			}
 			else if (command.equals("LEFT") && (y % size) > 0) {

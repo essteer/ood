@@ -15,7 +15,7 @@ public class ValidPassword {
 		Pattern upperCasePattern = Pattern.compile("[A-Z]");
 		Pattern lowerCasePattern = Pattern.compile("[a-z]");
 		Pattern digitPattern = Pattern.compile("\\d");
-		Pattern symbolPattern = Pattern.compile("[^A-z\\d]");
+		Pattern symbolPattern = Pattern.compile("[^A-z\\d\\_]");
 		
 		int numTypes = 0;
 		if (upperCasePattern.matcher(password).find()) numTypes++;

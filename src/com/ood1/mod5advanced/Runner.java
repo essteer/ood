@@ -9,21 +9,28 @@ public class Runner {
 		
 		int[] intArray = {3,2,1,5,4};
 		int[] sortedArray = BubbleSort.sortIntArray(intArray);
-		
 		for (int i : sortedArray) {
 			System.out.print(i + " ");
 		}
 		System.out.println();
+		
+		int[] intArray2 = {5,2,3,1,4};
+		int[] sortedArray2 = BubbleSort.sortIntArray(intArray2);
+		for (int i : sortedArray2) {
+			System.out.print(i + " ");
+		}
 		System.out.println();
 		
 		//e.g. Argument “abcd” would return encoded String “badc”
-		System.out.println(SimpleEncoder.encode("abcd"));
+		System.out.println("abcd should return badc -> " + SimpleEncoder.encode("abcd"));
 		//Argument “two words” would return “uvp xnsct”
 		System.out.println(SimpleEncoder.encode("two words"));
 		System.out.println();
 		
         // "abcd” will return “bzfz”
 		System.out.println(HarderEncoder.encode("abcd"));
+		// "ABCD” will return “bzfz”
+		System.out.println("ABCD should return bzfz -> " + HarderEncoder.encode("ABCD"));
 		//For example: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa (52 x ‘a’)
 		//will return: bydwfuhsjqlonmpkritgvexczabydwfuhsjqlonmpkritgvexcza
 		System.out.println(HarderEncoder.encode("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"));
@@ -47,6 +54,16 @@ public class Runner {
 		
 		String[] commands2 = {"RIGHT", "UP", "DOWN", "RIGHT", "RIGHT", "RIGHT", "RIGHT", "RIGHT"};
 		System.out.println(MoonRover.roverMove(5, commands2));
+		System.out.println();
+		
+		String[] commands3 = {"DOWN","DOWN","RIGHT","RIGHT","RIGHT","RIGHT",
+				"RIGHT","RIGHT","RIGHT","RIGHT","RIGHT","RIGHT",
+				"RIGHT","RIGHT","RIGHT","RIGHT","DOWN","DOWN",
+				"DOWN","DOWN","DOWN","DOWN","DOWN","DOWN","DOWN",
+				"DOWN","DOWN","DOWN","DOWN","DOWN","LEFT","LEFT",
+				"LEFT","LEFT","LEFT","LEFT","LEFT","LEFT","LEFT",
+				"LEFT","LEFT","LEFT","LEFT","LEFT","LEFT","LEFT"};
+		System.out.println("Should equal 156 -> " + MoonRover.roverMove(13, commands3));
 		System.out.println();
 		
 		System.out.println(ValidPostcode.validPostcode("A12BC"));
