@@ -3,6 +3,7 @@ package com.ood2.optionals;
 //import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.OptionalInt;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
@@ -79,6 +80,16 @@ public class Runner {
 			e.printStackTrace();
 		} catch (MissingMotherboardException e) {
 			e.printStackTrace();
+		}
+		
+		
+		// Optional Types
+		OptionalInt optionalInt = OptionalInt.empty();
+		if (optionalInt.isPresent()) {
+			System.out.println(computerStore.getName() + " has " + 
+		    optionalInt.getAsInt() + " computers for purchase.");
+		} else {
+			System.out.println(computerStore.getName() + " has no computers.");
 		}
 
 	}
