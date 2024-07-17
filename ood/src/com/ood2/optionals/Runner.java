@@ -24,7 +24,7 @@ public class Runner {
 		
 		computer.setMotherboard(new Motherboard("Gigabyte"));
 		
-		Optional<Motherboard> optionalMotherboard = computer.getMotherboard();
+//		Optional<Motherboard> optionalMotherboard = computer.getMotherboard();
 		// the get() method should never be called without the isPresent() method
 //		if (optionalMotherboard.isPresent()) {
 //			Motherboard motherboard = optionalMotherboard.get();
