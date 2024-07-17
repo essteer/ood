@@ -26,9 +26,9 @@ public class Runner {
 		
 		Optional<Motherboard> optionalMotherboard = computer.getMotherboard();
 		// the get() method should never be called without the isPresent() method
-		if (optionalMotherboard.isPresent()) {
-			Motherboard motherboard = optionalMotherboard.get();
-		}
+//		if (optionalMotherboard.isPresent()) {
+//			Motherboard motherboard = optionalMotherboard.get();
+//		}
 		
 		// Optional methods: ifPresent() allows us to call a method on an
 		// object within an Optional
