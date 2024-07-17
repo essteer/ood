@@ -4,12 +4,12 @@ import java.util.Comparator;
 
 public class Book implements Comparable<Book>{
 	
-	public static Comparator<Book> NAME_COMPARATOR = Comparator
-			.comparing(Book::getTitle);
-	
 	public static Comparator<Book> PAGE_COMPARATOR = Comparator
 			.comparing(Book::getNumberOfPages)
 			.thenComparing(Book::getISBN);
+	
+	public static Comparator<Book> NAME_COMPARATOR = Comparator
+			.comparing(Book::getTitle);
 	
 	public static Comparator<Book> PAGE_ISBN_COMPARATOR = Comparator
 			.comparing(Book::getNumberOfPages)
