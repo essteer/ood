@@ -19,8 +19,8 @@ public class BookTest {
 	private Book book7;
 	private List<Book> books;
 	
-	@BeforeEach
-	void init() {
+	@BeforeAll
+	void initAll() {
 		this.book1 = new Book("Learn Java", 45678, 19.99, 500, 4.3);
 		this.book2 = new Book("Learn UNIX", 65432, 17.5, 650, 3.9);
 		this.book3 = new Book("Learn SQL", 87956, 9.75, 220, 4.4);
@@ -28,6 +28,11 @@ public class BookTest {
 		this.book5 = new Book("Learn React", 55676, 28.75, 490, 4.8);
 		this.book6 = new Book("Learn JavaScript", 34343, 14.99, 300, 4.4);
 		this.book7 = new Book("Learn Python", 65767, 27.25, 500, 4.1);
+		this.books = new ArrayList<>();
+	}
+	
+	@BeforeEach
+	void initEach() {
 		this.books = new ArrayList<>();
 	}
 	
