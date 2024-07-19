@@ -1,6 +1,5 @@
 package com.ood2.generics;
 
-
 // Generic type solution
 //public interface CatalogItem<Type> {
 //	
@@ -10,9 +9,18 @@ package com.ood2.generics;
 //}
 
 // Numeric type solution
-public interface CatalogItem<NumericType extends Number> {
-	
-	public NumericType getId();
-	public void setId(NumericType id);
-
+//public interface CatalogItem<NumericType extends Number> {
+//	
+//	public NumericType getId();
+//	public void setId(NumericType id);
+//
+//}
+ 
+// ==============================
+// Itai's solution
+// ==============================
+// Interface for CatalogItem with a generic ID type
+interface CatalogItem<ID extends Number> {
+    ID getId();
+    void setId(ID id);
 }

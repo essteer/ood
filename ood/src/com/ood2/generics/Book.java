@@ -19,25 +19,43 @@ package com.ood2.generics;
 //}
 
 // Numeric type solution
-public class Book<NumericType extends Number> implements CatalogItem<NumericType> {
-	
-	private NumericType id;
-	
-	public Book(NumericType id) {
-		this.id = id;
-	}
-	
-	public NumericType getId() {
-		return this.id;
-	}
-	
-	public void setId(NumericType id) {
-		this.id = id;
-	}
-	
+//public class Book<NumericType extends Number> implements CatalogItem<NumericType> {
+//	
+//	private NumericType id;
+//	
+//	public Book(NumericType id) {
+//		this.id = id;
+//	}
+//	
+//	public NumericType getId() {
+//		return this.id;
+//	}
+//	
+//	public void setId(NumericType id) {
+//		this.id = id;
+//	}
+//	
+//	@Override
+//	public String toString() {
+//		return "Book [id=" + this.id + "]";
+//	}
+//
+//}
+
+//==============================
+//Itai's solution
+//==============================
+//Book class implementing CatalogItem
+class Book implements CatalogItem<Integer> {
+	private Integer id;
+
 	@Override
-	public String toString() {
-		return "Book [id=" + this.id + "]";
+	public Integer getId() {
+		return id;
 	}
 
+	@Override
+	public void setId(Integer id) {
+		this.id = id;
+	}
 }
