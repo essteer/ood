@@ -1,8 +1,8 @@
-package com.tdd.demo.comparisonsExercises;
+package com.tdd.comparisonsExercises;
 
 import java.util.Comparator;
 
-public class BookPageISBNComparator implements Comparator<Book> {
+public class BookPageComparator implements Comparator<Book> {
 	
 	@Override
 	public int compare(Book bookA, Book bookB) {
@@ -12,9 +12,9 @@ public class BookPageISBNComparator implements Comparator<Book> {
 		
 		if (comparison == 0) {
 			// If the books have the same number of pages
-			// sort by descending ISBN number -> so compare B then A
-			// return Integer.compare(bookB.getISBN(), bookA.getISBN());
-			return bookB.getISBN() - bookA.getISBN();
+			// sort by ascending ISBN number
+//			return Integer.compare(bookA.getISBN(), bookB.getISBN());
+			return bookA.getISBN() - bookB.getISBN();
 		}
 		// Otherwise, return page number comparison
 		return comparison;

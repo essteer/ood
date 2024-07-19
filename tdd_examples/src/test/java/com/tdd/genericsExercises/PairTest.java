@@ -1,4 +1,4 @@
-package com.tdd.demo.genericsExercises;
+package com.tdd.genericsExercises;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.*;

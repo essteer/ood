@@ -1,10 +1,10 @@
-package com.tdd.demo.genericsExercises;
+package com.tdd.genericsExercises;
 
-public class Book implements CatalogItem {
-	
+public class Borrower implements CatalogItem {
+
 	private int id;
 	
-	public Book(int id) {
+	public Borrower(int id) {
 		this.id = id;
 	}
 	

@@ -1,4 +1,4 @@
-package com.tdd.demo.genericsExercises;
+package com.tdd.genericsExercises;
 
 public class Pair<T> {
 	

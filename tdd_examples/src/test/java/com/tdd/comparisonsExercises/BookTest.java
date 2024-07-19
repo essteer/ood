@@ -1,4 +1,4 @@
-package com.tdd.demo.comparisonsExercises;
+package com.tdd.comparisonsExercises;
 
 import static org.junit.jupiter.api.Assertions.*;
 

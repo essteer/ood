@@ -1,4 +1,4 @@
-package com.tdd.demo.comparisonsExercises;
+package com.tdd.comparisonsExercises;
 
 import java.util.ArrayList;
 import java.util.Collections;
