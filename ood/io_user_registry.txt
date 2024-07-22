@@ -1,0 +1,4 @@
+Bugs Bunny,Kansas,bugs@aol.com
+Tweetie Pie,Cincinatti,tweetie@gmail.com
+Elmer Fudd,Indianapolis,elmer@yahoo.com
+Michael Jordan,Chicago,mj@bulls.com
