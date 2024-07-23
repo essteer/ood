@@ -25,7 +25,7 @@ public class CharacterCounter {
 	}
 	
 	
-	public int countCharacterInFile(String character, String filepath) {
+	public int countCharacterInFile(String character, String filepath) throws FileNotFoundException, IOException {
 		
 		int characterCount = 0;
 		try {

@@ -27,7 +27,7 @@ public class UserRegister {
 		return scanner.nextLine();
 	}
 
-	private void saveUser(String user) {
+	private void saveUser(String user) throws FileNotFoundException, IOException {
 
 		try {
 			BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("./io_user_registry.txt", true));
@@ -37,8 +37,6 @@ public class UserRegister {
 			bufferedWriter.close();
 
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
@@ -55,8 +53,13 @@ public class UserRegister {
 		userData += ",";
 		userData += this.getEmail(scanner);
 		scanner.close();
+		
+		try {
+			this.saveUser(userData);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
-		this.saveUser(userData);
 	}
 
 	public List<User> createListOfUsersFromFile(String filepath) {
