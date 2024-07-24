@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"com.ood2.javadoc","l":"BankAccount"},{"p":"com.ood2.javadoc","l":"InvalidAccountException"},{"p":"com.ood2.javadoc","l":"Main"}];updateSearchResults();

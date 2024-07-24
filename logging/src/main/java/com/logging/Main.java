@@ -28,6 +28,7 @@ public class Main
     public static double returnTaxableRate(String salaryString) {
     	
     	double salary = 0.0;
+    	double taxableRate = 0.2;
     	Logger logger = LogManager.getLogger();
     	
     	try {
@@ -37,11 +38,11 @@ public class Main
         		logger.error("ERROR - salary {} is negative", salaryString);
         	} else if (salary == 0) {
         		logger.warn("WARN - salary {} is zero", salaryString);
-        	} else if (salary >= 1 && salary <= 500000) {
-        		logger.info("INFO - salary {} between 1-500,000", salaryString);
-        		return salary * 0.2;
         	} else if (salary >= 1000000) {
         		logger.debug("DEBUG - salary {} >= 1,000,000", salaryString);
+        	} else if (salary >= 1 && salary <= 500000) {
+        		logger.info("INFO - salary {} between 1-500,000 - OK", salaryString);
+        		return salary * taxableRate;
         	}
     		
     	} catch (NumberFormatException e) {
