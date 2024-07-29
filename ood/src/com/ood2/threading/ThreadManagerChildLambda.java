@@ -7,9 +7,9 @@ public class ThreadManagerChildLambda extends ThreadManager {
 		if (number > 0) {
 			for (int i=1; i <= number; i++) {
 				Thread thread = new Thread(() -> {
-						System.out.println(Thread.currentThread().getName());
+						System.out.println(Thread.currentThread().getName() + " is running...");
 				}, "threadChildLambda" + i);
-				thread.start();
+				threads.add(thread);
 			}
 		}
 	}

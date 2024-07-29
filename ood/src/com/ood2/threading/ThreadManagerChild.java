@@ -8,10 +8,10 @@ public class ThreadManagerChild extends ThreadManager {
 			for (int i=1; i <= number; i++) {
 				Thread thread = new Thread(new Runnable(){
 					public void run() {
-						System.out.println(Thread.currentThread().getName());
+						System.out.println(Thread.currentThread().getName() + " is running...");
 					}
 				}, "threadChild" + i);
-				thread.start();
+				threads.add(thread);
 			}
 		}
 	}
