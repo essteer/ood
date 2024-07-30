@@ -2,7 +2,9 @@ package com.ood2.lambdas;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
@@ -71,7 +73,8 @@ public class Runner {
 		acArrayList.add(account7);
 		acArrayList.add(account8);
 //		lambdasForListMethods(acArrayList);
-		lambdasForComparators(acArrayList);
+//		lambdasForComparators(acArrayList);
+		lambdasForMapMerge(acArrayList);
 		
 		
 		
@@ -95,13 +98,51 @@ public class Runner {
 		
 		Comparator<BankAccount> sortByBalance = (ac1, ac2) -> Double.valueOf(ac1.getBalance()).compareTo(Double.valueOf(ac2.getBalance()));
 		acArrayList.sort(sortByBalance);
+		System.out.println("Sort by account balance:");
 		acArrayList.forEach(ac -> System.out.println("A/C number: " + ac.getAccountNumber() + " A/C holder: " + ac.getAccountHolder() + " Balance: " + ac.getBalance()));
 		System.out.println();
 		
 		Comparator<BankAccount> sortByAccountType = (ac1, ac2) -> ac1.getAccountType().compareTo(ac2.getAccountType());
 		acArrayList.sort(sortByAccountType);
+		System.out.println("Sort by account type:");
 		acArrayList.forEach(ac -> System.out.println("A/C number: " + ac.getAccountNumber() + " A/C holder: " + ac.getAccountHolder() + " A/C type: " + ac.getAccountType()));
 		System.out.println();
+		
+		Comparator<BankAccount> sortByAccountNumber = (ac1, ac2) -> Integer.valueOf(ac1.getAccountNumber()).compareTo(Integer.valueOf(ac2.getAccountNumber()));
+		acArrayList.sort(sortByAccountNumber);
+		System.out.println("Sort by account number:");
+		acArrayList.forEach(ac -> System.out.println("A/C number: " + ac.getAccountNumber() + " A/C holder: " + ac.getAccountHolder() + " A/C type: " + ac.getAccountType()));
+		System.out.println();
+		
+		Comparator<BankAccount> sortByTypeThenNumber = sortByAccountType.thenComparing(sortByAccountNumber);
+		acArrayList.sort(sortByTypeThenNumber);
+		System.out.println("Sort by account type then by number:");
+		acArrayList.forEach(ac -> System.out.println("A/C number: " + ac.getAccountNumber() + " A/C holder: " + ac.getAccountHolder() + " A/C type: " + ac.getAccountType()));
+		System.out.println();
+		
+	}
+	
+	public static void lambdasForMapMerge(List<BankAccount> acArrayList) {
+		Map<Integer,Integer> bankCodeToAccountsMap = new HashMap<>();
+		
+		BiFunction<Integer,Integer,Integer> countPerBankCode = (currentValue, amountToAdd) -> currentValue + amountToAdd;
+		for (BankAccount ac : acArrayList) {
+			bankCodeToAccountsMap.merge(ac.getBankCode(), 1, countPerBankCode);
+		}
+		System.out.println("\nMap of bank codes to accounts");
+		System.out.println(bankCodeToAccountsMap.toString());
+		
+		
+        Map<Integer,Double> bankCodeToBalancesMap = new HashMap<>();
+		
+		BiFunction<Double,Double,Double> totalPerBankCode = (currentValue, amountToAdd) -> Math.round((currentValue + amountToAdd) * 100) / 100.0;
+		for (BankAccount ac : acArrayList) {
+			System.out.println(bankCodeToBalancesMap.toString());
+			bankCodeToBalancesMap.merge(ac.getBankCode(), ac.getBalance(), totalPerBankCode);
+		}
+		System.out.println("\nMap of bank codes to total balances");
+		System.out.println(bankCodeToBalancesMap.toString());
+		
 		
 	}
 
