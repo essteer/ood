@@ -30,7 +30,7 @@ public class UserRegister {
 	private void saveUser(String user) throws FileNotFoundException, IOException {
 
 		try {
-			BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("./io_user_registry.txt", true));
+			BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("./resources/io_user_registry.txt", true));
 			bufferedWriter.write(user);
 			bufferedWriter.newLine();
 			bufferedWriter.flush();

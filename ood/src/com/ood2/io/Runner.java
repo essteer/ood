@@ -18,7 +18,7 @@ public class Runner {
 		UserRegister userRegister = new UserRegister();
 //		userRegister.registerUser();
 		
-		String userDataFilepath = "./io_user_registry.txt";
+		String userDataFilepath = "./resources/io_user_registry.txt";
 		List<User> userList = userRegister.createListOfUsersFromFile(userDataFilepath);
 		
 		for (User user : userList) {
