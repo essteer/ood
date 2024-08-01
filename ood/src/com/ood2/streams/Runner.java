@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.OptionalDouble;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class Runner {
 
@@ -36,6 +37,7 @@ public class Runner {
 		    .filter(isCurrentCheckingAccount)
 		    .count();
 		System.out.println(String.format("There are %d current/checking accounts", numCurrentAccounts));
+		System.out.println();
 		
 		// The number of accounts which are overdrawn
 		Predicate<BankAccount> isOverdrawn = ac -> ac.getBalance() < 0;
@@ -43,6 +45,7 @@ public class Runner {
 				.filter(isOverdrawn)
 				.count();
 		System.out.println(String.format("There are %d overdrawn accounts", numOverdrawnAccounts));
+		System.out.println();
 		
 		// The highest account balance
 		Optional<Double> highestBalance = acArrayList.stream()
@@ -52,6 +55,7 @@ public class Runner {
 		highestBalance.ifPresent(balance ->
 				System.out.println(String.format("Highest balance: " + highestBalance.get()))
 		);
+		System.out.println();
 		
 		// The average account balance
 		OptionalDouble averageBalance = acArrayList.stream()
@@ -60,6 +64,7 @@ public class Runner {
 		averageBalance.ifPresent(balance ->
 		        System.out.println(String.format("Average balance: " + Math.round(averageBalance.getAsDouble() * 100.0)/100.0))
         );
+		System.out.println();
 		
 		// The average balance of accounts which are in credit
 		Predicate<BankAccount> inCredit = ac -> ac.getBalance() >= 0.0;
@@ -70,6 +75,7 @@ public class Runner {
 		averageBalanceInCredit.ifPresent(balance ->
             System.out.println(String.format("Average balance (in credit): " + Math.round(averageBalanceInCredit.getAsDouble() * 100.0)/100.0))
         );
+		System.out.println();
 		
 		// The sum of all overdrafts
 		Predicate<BankAccount> overdrawn = ac -> ac.getBalance() < 0.0;
@@ -80,6 +86,7 @@ public class Runner {
 		sumOfAllOverdrafts.ifPresent(balance ->
             System.out.println(String.format("Sum of all overdrafts: " + Math.round(sumOfAllOverdrafts.getAsDouble() * 100.0)/100.0))
         );
+		System.out.println();
 		
 		// The total amount interest due to be paid to accounts which are in credit
 		OptionalDouble interestDueToInCreditAccounts = acArrayList.stream()
@@ -87,8 +94,60 @@ public class Runner {
 				.mapToDouble(ac -> ac.getBalance() * (ac.getInterestRate()/100))
 				.reduce((a, b) -> a + b);
 		interestDueToInCreditAccounts.ifPresent(balance ->
-        System.out.println(String.format("Total interest due to in credit accounts: " + Math.round(interestDueToInCreditAccounts.getAsDouble() * 100.0)/100.0))
-    );
+            System.out.println(String.format("Total interest due to in credit accounts: " + Math.round(interestDueToInCreditAccounts.getAsDouble() * 100.0)/100.0))
+		);
+		System.out.println();
+		
+        // Create an ArrayList of Strings containing the names of all the account holders who are overdrawn
+        List<String> overdrawnAccountHolders = acArrayList.stream()
+        		.filter(overdrawn)
+        		.map(ac -> ac.getAccountHolder())
+        		.collect(Collectors.toList());
+        System.out.println(overdrawnAccountHolders.toString());
+        System.out.println();
+        
+        // Increase the interest rate on savings accounts to 1.3
+        acArrayList.stream()
+        	.filter(ac -> ac.getAccountType().equals("savings"))
+        	.forEach(ac -> ac.setInterestRate(1.3));
+        for (BankAccount ac : acArrayList) {
+        	if (ac.getAccountType().equals("savings")) {
+        		System.out.println("Account number: " + ac.getAccountNumber() + " Interest rate: " + ac.getInterestRate());
+        	}
+        }
+        System.out.println();
+        
+        // Replace bank code 234567 with a new bank code 123456
+        acArrayList.stream()
+            .filter(ac -> ac.getBankCode() == 234567)
+            .forEach(ac -> ac.setBankCode(123456));
+        for (BankAccount ac : acArrayList) {
+        	if (ac.getAccountType().equals("current/checking")) {
+        		System.out.println("Account number: " + ac.getAccountNumber() + " Bank code: " + ac.getBankCode());
+        	}
+        }
+        System.out.println();
+        
+        // Create a new ArrayList which only contains accounts with bank code 987654
+        List<BankAccount> code987654AccountsOnly = acArrayList.stream()
+        		.filter(ac -> ac.getBankCode() == 987654)
+        		.collect(Collectors.toList());
+        for (BankAccount ac : code987654AccountsOnly) {
+        	System.out.println("Account number: " + ac.getAccountNumber() + " Bank code: " + ac.getBankCode());
+        }
+        System.out.println();
+        
+        // Create a new ArrayList which only contains accounts where the account holder has the title "Dr"
+        List<BankAccount> doctorsOnly = acArrayList.stream()
+        		.filter(ac -> ac.getAccountHolder().split(" ")[0].equals("Dr"))
+        		.collect(Collectors.toList());
+        for (BankAccount ac : doctorsOnly) {
+        	System.out.println("Account holder: " + ac.getAccountHolder());
+        }
+        System.out.println();
+        
+        
+    
 
 	}
 
