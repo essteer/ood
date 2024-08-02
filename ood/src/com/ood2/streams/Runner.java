@@ -5,6 +5,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.OptionalDouble;
+import java.util.function.BinaryOperator;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -146,8 +147,30 @@ public class Runner {
         }
         System.out.println();
         
+        // Use the streams reduce() method to find the bank account with the highest balance
+        Optional<BankAccount> acWithHighestBalance = acArrayList.stream()
+        		.reduce((a, b) -> a.getBalance() > b.getBalance() ? a : b);
         
-    
+        acWithHighestBalance.ifPresent(ac -> 
+            System.out.println("The account with the highest balance belongs to: " + acWithHighestBalance.get().getAccountHolder()));
+        System.out.println();
+        
+        // Use the streams reduce() method to find the bank account with the lowest balance for sort code 987654
+//        Optional<BankAccount> acWithLowestBalanceOf987654SortCode = acArrayList.stream()
+//        		.filter(ac -> ac.getBankCode() == 987654)
+//        		.reduce((a, b) -> Math.min(a.getBalance(), b.getBalance()) == a.getBalance() ? a : b);
+//        
+//        acWithLowestBalanceOf987654SortCode.ifPresent(ac ->
+//                System.out.println("The account with the lowest balance and sort code of 987654 belongs to: " + acWithLowestBalanceOf987654SortCode.get().getAccountHolder()));
+//        System.out.println();
+        
+        BinaryOperator<BankAccount> getAccountWithLowestBalance = 
+				(accountOne, accountTwo) -> accountOne.getBalance() < accountTwo.getBalance() ? accountOne : accountTwo;
+
+		acArrayList.stream()
+		        .filter(account -> account.getBankCode() == 987654)
+		        .reduce(getAccountWithLowestBalance)
+		        .ifPresent(account -> System.out.println("lowest balance for 987654: "+account.getAccountHolder()+", "+account.getBalance()));
 
 	}
 
