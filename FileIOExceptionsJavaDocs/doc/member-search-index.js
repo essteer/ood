@@ -1,0 +1,1 @@
+memberSearchIndex = [{"p":"com.fdmgroup.exceptions","c":"MyException","l":"MyException()","u":"%3Cinit%3E()"}];updateSearchResults();
