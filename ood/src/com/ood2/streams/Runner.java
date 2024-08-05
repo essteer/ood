@@ -170,7 +170,7 @@ public class Runner {
 		acArrayList.stream()
 		        .filter(account -> account.getBankCode() == 987654)
 		        .reduce(getAccountWithLowestBalance)
-		        .ifPresent(account -> System.out.println("lowest balance for 987654: "+account.getAccountHolder()+", "+account.getBalance()));
+		        .ifPresent(account -> System.out.println("lowest balance for 987654: " + account.getAccountHolder() + ", "+ account.getBalance()));
 
 	}
 
