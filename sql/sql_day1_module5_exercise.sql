@@ -71,16 +71,15 @@ SELECT DISTINCT share_id FROM shares_prices WHERE time_end > DATE_ADD(NOW(), INT
 # 19. Which trade IDs took place in this calendar year (i.e. since 1 January)?
 SELECT trade_id, transaction_time FROM trades WHERE DATE(transaction_time) > "2024-01-01";
 # 20. Display full details of all trades which took place last year.
-SELECT * FROM trades WHERE YEAR(transaction_time) = "2023";
+SELECT * FROM trades WHERE YEAR(transaction_time) = YEAR(DATE_ADD(NOW(), INTERVAL -1 YEAR));
 # 21. Display full details of all trades which took place in the previous quarter.
 SELECT 
     *
 FROM
     trades
 WHERE
-    MONTH(transaction_time) >= 4
-        AND MONTH(transaction_time) <= 6
-        AND YEAR(transaction_time) = YEAR(NOW());
+    QUARTER(transaction_time) = QUARTER(DATE_ADD(NOW(), INTERVAL -1 QUARTER))
+        AND YEAR(transaction_time) = YEAR(DATE_ADD(NOW(), INTERVAL -1 QUARTER));
 # 22. Which trade IDs have had price totals of over 1,000,000 in the last 90 days?
 SELECT 
     trade_id, price_total, transaction_time
