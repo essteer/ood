@@ -74,4 +74,137 @@ WHERE
 GROUP BY share_id
 HAVING COUNT(trade_id) > 5;
 
-SELECT * FROM trades ORDER BY share_id, price_total DESC;
+# ===============
+# Extra questions
+# ===============
+
+# 1. List stock_ex_ids with an average share amount above 1000 in the last 60 days.
+SELECT 
+    stock_ex_id
+FROM
+    trades
+WHERE
+    transaction_time >= DATE_ADD(CURDATE(), INTERVAL - 60 DAY)
+GROUP BY stock_ex_id
+HAVING AVG(share_amount) > 1000;
+
+# 2. Modify your query to show the names of the stock exchanges.
+SELECT 
+    ex.name, t.stock_ex_id
+FROM
+    trades t
+        LEFT JOIN
+    stock_exchanges ex ON t.stock_ex_id = ex.stock_ex_id
+WHERE
+    t.transaction_time >= DATE_ADD(CURDATE(), INTERVAL - 60 DAY)
+GROUP BY t.stock_ex_id
+HAVING AVG(t.share_amount) > 1000;
+
+/*3. List the broker_ids with the lowest share amount on stock_ex_id 1
+that is greater than 5,000.*/
+SELECT DISTINCT
+    broker_id
+FROM
+    trades
+WHERE
+    share_amount = (SELECT 
+            MIN(share_amount)
+        FROM
+            trades
+        WHERE
+            stock_ex_id = 1 AND share_amount > 5000);
+
+# This is the model answer - a different interpretation of the question! Badly worded.
+SELECT 
+    broker_id
+FROM
+    trades
+WHERE
+    stock_ex_id = 1
+GROUP BY broker_id
+HAVING MIN(share_amount) > 5000;
+
+# 4. Modify your query to show the names of the brokers.
+SELECT DISTINCT
+    t.broker_id 'Broker ID',
+    CONCAT(b.first_name, ' ', b.last_name) 'Broker Name'
+FROM
+    trades t
+        LEFT JOIN
+    brokers b ON t.broker_id = b.broker_id
+WHERE
+    t.share_amount = (SELECT 
+            MIN(share_amount)
+        FROM
+            trades
+        WHERE
+            stock_ex_id = 1 AND share_amount > 5000);
+            
+# Model answer for their interpretation:
+SELECT 
+    CONCAT(b.first_name, ' ', b.last_name) AS broker
+FROM
+    trades t
+        INNER JOIN
+    brokers b ON b.broker_id = t.broker_id
+WHERE
+    t.stock_ex_id = 1
+GROUP BY CONCAT(b.first_name, ' ', b.last_name)
+HAVING MIN(share_amount) > 5000;
+
+# 5. List share_ids which broker 1 has traded more than 10 times.
+SELECT 
+    share_id
+FROM
+    trades
+WHERE
+    broker_id = 1
+GROUP BY share_id
+HAVING COUNT(trade_id) > 10;
+
+# 6. List the names of companies in London with an average share price above 150.
+SELECT 
+    co.name
+FROM
+    companies co
+        INNER JOIN
+    places pl ON co.place_id = pl.place_id
+        INNER JOIN
+    shares sh ON co.company_id = sh.company_id
+        INNER JOIN
+    shares_prices sp ON sh.share_id = sp.share_id
+WHERE
+    pl.city = 'London'
+GROUP BY sp.share_id
+HAVING AVG(price) > 150;
+
+/*7. Display the name of the broker who has the highest average share amount.
+HINT: use a subquery in your HAVING filter. The inner query should combine 2
+aggregate functions to find the highest average share amount for a broker_id.*/
+SELECT 
+    CONCAT(b.first_name, ' ', b.last_name) 'Broker Name', AVG(share_amount)
+FROM
+    brokers b
+        INNER JOIN
+    trades t ON b.broker_id = t.broker_id
+GROUP BY CONCAT(b.first_name, ' ', b.last_name)
+HAVING ROUND(AVG(share_amount),2) = (SELECT 
+        ROUND(MAX(avg_share_amount),2)
+    FROM
+    (SELECT AVG(share_amount) AS avg_share_amount FROM
+        trades
+    GROUP BY broker_id) avg_share_amounts);
+
+/* 8. List share_id whose lowest share amount is greater than the highest share
+amount for share_id 4. HINT: use a subquery in your HAVING filter.*/
+SELECT 
+    share_id, MIN(share_amount)
+FROM
+    trades
+GROUP BY share_id
+HAVING MIN(share_amount) > (SELECT 
+        MAX(share_amount)
+    FROM
+        trades
+    GROUP BY share_id
+    HAVING share_id = 4);
